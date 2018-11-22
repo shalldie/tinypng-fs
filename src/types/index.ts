@@ -48,3 +48,17 @@ export type TinypngResponse = {
         url: string;
     }
 };
+
+/**
+ * parallelLimit 的返回类型
+ */
+export type ParallelResult = {
+    /**
+     * 成功的列表
+     */
+    success: any[];
+    /**
+     * 失败的列表
+     */
+    fail: any[];
+};

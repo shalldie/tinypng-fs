@@ -45,3 +45,20 @@ export function getAllImages(dirPath: string): Array<string> {
     }
     return result;
 };
+
+/**
+ * async 展开包装器
+ *
+ * @export
+ * @param {Promise<any>} promise promise
+ * @returns {(Promise<[Error, any] | [Error]>)}
+ */
+export async function getAsyncTuple(promise: Promise<any>): Promise<[Error, any] | [Error]> {
+    try {
+        const result = await promise;
+        return [null, result];
+    }
+    catch (ex) {
+        return [ex];
+    }
+}

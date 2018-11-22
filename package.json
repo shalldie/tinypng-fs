@@ -28,12 +28,10 @@
   },
   "homepage": "https://github.com/shalldie/tinypng-fs#readme",
   "dependencies": {
-    "async": "^2.6.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
-    "@types/async": "^2.0.50",
     "@types/request": "^2.48.1",
     "@types/request-promise": "^4.1.42",
     "typescript": "^3.1.6"
