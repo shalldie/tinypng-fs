@@ -29,7 +29,16 @@ class ParallelLimit {
      * @type {number}
      * @memberof ParallelLimit
      */
-    private invokeIndex: number = 0;
+    private invokeIndex: number = -1;
+
+    /**
+     * 完成task的数量
+     *
+     * @private
+     * @type {number}
+     * @memberof ParallelLimit
+     */
+    private invokedCount: number = 0;
 
     /**
      * 成功执行完毕的数据列表
@@ -52,14 +61,12 @@ class ParallelLimit {
     private resolve: Function;
 
     private async invokeNext() {
-        if (this.invokeIndex >= this.tasks.length) {
-            this.resolve({
-                success: this.resolvedList,
-                fail: this.rejectedList
-            });
+
+        if (this.invokeIndex + 1 >= this.tasks.length) {
             return;
         }
         this.invokeIndex++;
+
         const tempIndex = this.invokeIndex;
         const func = this.tasks[this.invokeIndex];
         const [err, result] = await _.getAsyncTuple(func());
@@ -69,6 +76,17 @@ class ParallelLimit {
         else {
             this.resolvedList[tempIndex] = result;
         }
+        this.invokedCount++;
+
+        // 如果全部完成
+        if (this.invokedCount >= this.tasks.length) {
+            this.resolve({
+                success: this.resolvedList,
+                fail: this.rejectedList
+            });
+            return;
+        }
+
         this.invokeNext();
     }
 

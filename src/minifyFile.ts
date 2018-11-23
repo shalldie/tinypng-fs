@@ -19,9 +19,9 @@ export default async function minifyFile(fileSrc: string, fileTo: string): Promi
     // 创建目录
     _.mkdirp(path.dirname(fileTo));
     // 下载图片
-    return new Promise<TinypngResponse>(res => {
+    return new Promise<TinypngResponse>((resolve, reject) => {
         const writeStream = fs.createWriteStream(fileTo);
-        rq(tinyInfo.output.url).pipe(writeStream);
-        writeStream.on('finish', () => res(tinyInfo));
+        rq(tinyInfo.output.url).pipe(writeStream).on('error', reject);
+        writeStream.on('finish', () => resolve(tinyInfo));
     });
 }

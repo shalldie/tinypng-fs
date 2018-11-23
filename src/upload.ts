@@ -17,5 +17,6 @@ export default function upload(fileSrc: string): Promise<TinypngResponse> {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:62.0) Gecko/20100101 Firefox/62.0'
             },
             body: fs.createReadStream(fileSrc)
-        });
+        })
+        .then(content => JSON.parse(content));
 };
