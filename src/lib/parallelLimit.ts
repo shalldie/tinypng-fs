@@ -1,10 +1,15 @@
+/**
+ * 本来想使用并发的，但是发现只能串行，这个工具类就放弃了
+ * >_<#@!
+ */
+
 import * as _ from './utils';
 import { ParallelResult } from '../types';
 
 class ParallelLimit {
 
     /**
-     *Creates an instance of ParallelLimit.
+     * Creates an instance of ParallelLimit.
      * @param {Array<() => Promise<any>>} tasks 异步任务列表
      * @memberof ParallelLimit
      */

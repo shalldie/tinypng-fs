@@ -63,3 +63,5 @@ typings/
 /build
 
 /package-lock.json
+
+/test/new_a

@@ -1,7 +1,7 @@
 /**
  * tinypng 的返回值
  */
-export type TinypngResponse = {
+export class TinypngResponse {
     /**
      * 上传的图片
      */
@@ -15,7 +15,8 @@ export type TinypngResponse = {
          * @example image/jpeg
          */
         type: string;
-    },
+    };
+
     /**
      * 图片压缩后
      */
@@ -46,7 +47,27 @@ export type TinypngResponse = {
          * 压缩后图片地址
          */
         url: string;
-    }
+    };
+};
+
+export class TinypngDirResult extends TinypngResponse {
+
+    /**
+     * 图片源地址
+     *
+     * @type {string}
+     * @memberof TinypngDirResult
+     */
+    imgSrc: string = '';
+
+
+    /**
+     * 图片目标地址
+     *
+     * @type {string}
+     * @memberof TinypngDirResult
+     */
+    imgTo: string = '';
 };
 
 /**
