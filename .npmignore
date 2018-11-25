@@ -9,3 +9,5 @@ test
 index.js
 
 tsconfig.json
+
+.travis.yml

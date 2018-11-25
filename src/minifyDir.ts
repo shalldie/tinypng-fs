@@ -23,11 +23,7 @@ export default async function minifyDir(dirSrc: string, dirTo: string): Promise<
         const relativePath = path.relative(dirSrc, imgSrc);
         const imgTo = path.join(dirTo, relativePath);
         const minifyResult = await minifyFile(imgSrc, imgTo);
-        result.push({
-            imgSrc,
-            imgTo,
-            ...minifyResult
-        });
+        result.push(minifyResult);
     }
 
     return result;
